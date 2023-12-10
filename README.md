@@ -117,6 +117,8 @@ Visit ECR and create 4 public repository with the name `ms1`, `ms2`, `ms3`, `ms4
 
 First login into the repo. Make sure you are running this from linux.
 
+Note: I have found that it doesn't work with windows. (Need to checkout more, for now we will push images through the ubuntu and then we can work rest on windows)
+
 ```sh
 aws ecr-public get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin public.ecr.aws/s7f2n3x3
 ```
