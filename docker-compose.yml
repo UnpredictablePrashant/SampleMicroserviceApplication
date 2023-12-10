@@ -1,0 +1,44 @@
+version: "3"
+services:
+  ms1:
+    image: microservice1
+    # deploy:
+    #   replicas: 5
+    build: 
+      context: ./microservice1
+      dockerfile: Dockerfile
+    ports:
+    - "3000:3000"
+    depends_on:
+    - ms2
+  ms2:
+    image: microservice2
+    # deploy:
+    #   replicas: 3
+    build: 
+      context: ./microservice2
+      dockerfile: Dockerfile
+    ports:
+    - "3001:3001"
+    depends_on:
+    - ms3
+  ms3:
+    image: microservice3
+    # deploy:
+    #   replicas: 3
+    build: 
+      context: ./microservice3
+      dockerfile: Dockerfile
+    ports:
+    - "3002:3002"
+    depends_on:
+    - ms4
+  ms4:
+    image: microservice4
+    # deploy:
+    #   replicas: 4
+    build: 
+      context: ./microservice4
+      dockerfile: Dockerfile
+    ports:
+    - "3003:3003"

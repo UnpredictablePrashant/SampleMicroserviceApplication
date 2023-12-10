@@ -1,0 +1,152 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-app
+spec:
+  selector:
+    matchLabels:
+      app: nodejs-app
+  template:
+    metadata:
+      labels:
+        app: nodejs-app
+    spec:
+      containers:
+      - name: microservice1
+        image: public.ecr.aws/s7f2n3x3/ms1:latest
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: "1"
+          requests:
+            memory: 256Mi
+            cpu: "0.2"
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservice1-service
+spec:
+  selector:
+    app: nodejs-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice2
+spec:
+  selector:
+    matchLabels:
+      app: microservice2
+  template:
+    metadata:
+      labels:
+        app: microservice2
+    spec:
+      containers:
+      - name: microservice2
+        image: public.ecr.aws/s7f2n3x3/ms2:latest
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: "1"
+          requests:
+            memory: 256Mi
+            cpu: "0.2"
+        ports:
+        - containerPort: 3001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservice2-service
+spec:
+  selector:
+    app: microservice2
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3001
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice3
+spec:
+  selector:
+    matchLabels:
+      app: microservice3
+  template:
+    metadata:
+      labels:
+        app: microservice3
+    spec:
+      containers:
+      - name: microservice3
+        image: public.ecr.aws/s7f2n3x3/ms3:latest
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: "1"
+          requests:
+            memory: 256Mi
+            cpu: "0.2"
+        ports:
+        - containerPort: 3002
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservice3-service
+spec:
+  selector:
+    app: microservice3
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3002
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice4
+spec:
+  selector:
+    matchLabels:
+      app: microservice4
+  template:
+    metadata:
+      labels:
+        app: microservice4
+    spec:
+      containers:
+      - name: microservice4
+        image: public.ecr.aws/s7f2n3x3/ms4:latest
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: "1"
+          requests:
+            memory: 256Mi
+            cpu: "0.2"
+        ports:
+        - containerPort: 3003
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservice4-service
+spec:
+  selector:
+    app: microservice4
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3003

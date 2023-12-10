@@ -10,21 +10,21 @@ app.get('/', (req,res)=>{
 })
 
 app.get('/ms2', async (req,res)=>{
-    const apiRes = await fetch(`${process.env.URL}:3001/user`)
+    const apiRes = await fetch(`${process.env.MS2}/user`)
     const apiResJson = await apiRes.json()
     console.log(apiResJson)    
     res.send(apiResJson)
 })
 
 app.get('/ms3', async (req,res)=>{
-    const apiRes = await fetch(`${process.env.URL}:3002/user`)
+    const apiRes = await fetch(`${process.env.MS3}/user`)
     const apiResJson = await apiRes.json()
     console.log(apiResJson)
     res.send(apiResJson)
 })
 
 app.get('/ms4', async (req,res)=>{
-    const apiRes = await fetch(`${process.env.URL}:3003/user`)
+    const apiRes = await fetch(`${process.env.MS4}/user`)
     const apiResJson = await apiRes.json()
     console.log(apiResJson)
     res.send(apiResJson)
